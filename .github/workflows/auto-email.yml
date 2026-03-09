@@ -1,0 +1,21 @@
+name: Enviar relatório diário
+
+on:
+  schedule:
+    - cron: '0 11 * * *'
+
+jobs:
+  enviar-relatorio:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Executar script
+        run: python export_powerbi.py
